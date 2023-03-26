@@ -1,14 +1,15 @@
 from flask import request, jsonify, send_from_directory
 from .config import app
 from .exceptions import UnknowError
-from .helpers.data_transactions import get_or_create, create_or_update, save_data, get_market, get_product
+from .helpers.data_transactions import get_or_create, create_or_update, save_data, get_market, get_product, \
+    get_product_price
 from .helpers.filters import get_product_filter_values, get_market_filter
-from. models import ProductPrice, Product, Market
+from .models import ProductPrice, Product, Market
 
 
 @app.route('/api/product/<market_name>', methods=['GET'])
 def get_products_by_market(market_name):
-    return parse_response(ProductPrice.query.filter_by(market_name=market_name).all())
+    return parse_response(get_product_price(market_name))
 
 
 @app.route('/api/product', methods=['POST'])
@@ -83,6 +84,7 @@ def parse_response(items):
     for item in items:
         results.append(item.as_dict())
     return jsonify(results)
+
 
 def raise_exception(exception):
     try:

@@ -2,7 +2,7 @@ from api.config import db
 from api.exceptions import UnknowError, TypeError, RelatedObjectNotFound
 from werkzeug.exceptions import NotFound
 
-from api.models import Market, Product
+from api.models import Market, Product, ProductPrice
 
 
 def get_or_create(model, filter, **kwargs):
@@ -45,3 +45,7 @@ def get_product(product_filter):
         return Product.query.get_or_404(product_filter)
     except NotFound as exc:
         raise RelatedObjectNotFound(exc, 'Product')
+
+
+def get_product_price(market_name=None):
+    return ProductPrice.query.filter_by(market_name=market_name).all()

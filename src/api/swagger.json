@@ -252,6 +252,24 @@
         },
         "deprecated": false
       }
+    },
+    "/product/<market_name>": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Get product filter market",
+        "description": "",
+        "operationId": "Getproductfiltermarket",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
     }
   },
   "components": {
