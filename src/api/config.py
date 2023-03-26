@@ -8,10 +8,9 @@ basedir = os.path.abspath(os.path.dirname(__file__))
 MIGRATION_DIR = os.path.join(basedir, 'migrations')
 
 app = Flask(__name__)
-app.config['GENERATED_DIR'] = os.getenv("GENERATED_DIR", "./generated")
+app.config['GENERATED_DIR'] = os.getenv("GENERATED_DIR", os.path.join(basedir, "../../generated"))
 app.config['SQLALCHEMY_DATABASE_URI'] = \
     'sqlite:///' + os.path.join(app.config['GENERATED_DIR'], 'database.db')
-print(app.config['SQLALCHEMY_DATABASE_URI'])
 db = SQLAlchemy(app)
 migrate = Migrate(app, db, directory=MIGRATION_DIR)
 

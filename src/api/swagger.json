@@ -1,119 +1,69 @@
 {
-  "openapi": "3.0.3",
+  "openapi": "3.0.0",
   "info": {
-    "title": "Swagger Petstore - OpenAPI 3.0",
-    "description": "Just challenge to LITC",
-    "version": "1.0.0"
+    "title": "litc",
+    "description": "",
+    "contact": {},
+    "version": "1.0"
   },
   "servers": [
     {
-      "url": "http://127.0.0.1:5000/"
+      "url": "http://127.0.0.1:5000/api",
+      "variables": {}
     }
   ],
   "paths": {
-    "/api/product/market_name": {
+    "/product": {
       "get": {
-        "summary": "Finds products by market",
-        "description": "Finds products by market",
-        "operationId": "get_products_by_market",
-        "parameters": [
-          {
-            "name": "market_name",
-            "in": "path",
-            "description": "market name",
-            "required": true,
-            "schema": {
-              "type": "string"
-            }
-          }
+        "tags": [
+          "Misc"
         ],
+        "summary": "List All products",
+        "description": "",
+        "operationId": "ListAllproducts",
+        "parameters": [],
         "responses": {
           "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/product"
-                  }
-                }
-              }
-            }
-          },
-          "400": {
-            "description": "Invalid status value"
+            "description": "",
+            "headers": {}
           }
-        }
-      }
-    },
-    "/api/product": {
-      "get": {
-        "summary": "Get all products",
-        "description": "Get all products",
-        "operationId": "get_all_products",
-        "responses": {
-          "200": {
-            "description": "successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "type": "array",
-                  "items": {
-                    "$ref": "#/components/schemas/product"
-                  }
-                }
-              }
-            }
-          }
-        }
-      },
-      "post": {
-        "summary": "Add a new product",
-        "description": "Add a new product",
-        "operationId": "create_product",
-        "requestBody": {
-          "description": "Add a new product",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/product"
-              }
-            }
-          },
-          "required": true
         },
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/product"
-                }
-              },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/product"
-                }
-              }
-            }
-          },
-          "405": {
-            "description": "Invalid input"
-          }
-        }
+        "deprecated": false
       },
       "put": {
-        "summary": "Update an existing product",
-        "description": "Update an existing product",
-        "operationId": "edit_product",
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Edit product",
+        "description": "",
+        "operationId": "Editproduct",
+        "parameters": [],
         "requestBody": {
-          "description": "Update an existing product",
+          "description": "",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/product"
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/EditproductRequest"
+                  },
+                  {
+                    "example": {
+                      "name": "Test2",
+                      "brand": "lrele",
+                      "calories": 10,
+                      "sugar_percentage": 54,
+                      "saturated_fats_percentage": 55
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "name": "Test2",
+                "brand": "lrele",
+                "calories": 10,
+                "sugar_percentage": 54,
+                "saturated_fats_percentage": 55
               }
             }
           },
@@ -121,95 +71,200 @@
         },
         "responses": {
           "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/product"
-                }
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Create product",
+        "description": "",
+        "operationId": "Createproduct",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CreateproductRequest"
+                  },
+                  {
+                    "example": {
+                      "name": "Tomate",
+                      "brand": "Hacendado",
+                      "calories": 10,
+                      "sugar_percentage": 54,
+                      "saturated_fats_percentage": 54
+                    }
+                  }
+                ]
               },
-              "application/xml": {
-                "schema": {
-                  "$ref": "#/components/schemas/product"
-                }
+              "example": {
+                "name": "Tomate",
+                "brand": "Hacendado",
+                "calories": 10,
+                "sugar_percentage": 54,
+                "saturated_fats_percentage": 54
               }
             }
           },
-          "400": {
-            "description": "Invalid ID supplied"
-          },
-          "404": {
-            "description": "Product not found"
-          },
-          "405": {
-            "description": "Validation exception"
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
           }
-        }
+        },
+        "deprecated": false
+      }
+    },
+    "/docs/": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "API Doc",
+        "description": "",
+        "operationId": "APIDoc",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
       }
     },
     "/market": {
+      "get": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "List All markets",
+        "description": "",
+        "operationId": "ListAllmarkets",
+        "parameters": [],
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      },
       "post": {
-        "summary": "Create new market",
-        "description": "Create new market",
-        "operationId": "create_market",
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Create market",
+        "description": "",
+        "operationId": "Createmarket",
+        "parameters": [],
         "requestBody": {
-          "description": "Create new market",
+          "description": "",
           "content": {
             "application/json": {
               "schema": {
-                "$ref": "#/components/schemas/market"
-              }
-            }
-          }
-        },
-        "responses": {
-          "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/market"
-                }
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CreatemarketRequest"
+                  },
+                  {
+                    "example": {
+                      "name": "mercadona",
+                      "address": "address",
+                      "opening_time": "9:00",
+                      "closing_time": "9:00"
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "name": "mercadona",
+                "address": "address",
+                "opening_time": "9:00",
+                "closing_time": "9:00"
               }
             }
           },
-          "405": {
-            "description": "Invalid input"
-          }
-        }
-      },
-      "get": {
-        "summary": "Get all market names",
-        "description": "Get all market names",
-        "operationId": "get_all_markets",
-        "requestBody": {
-          "description": "Get all market names",
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/market"
-              }
-            }
-          }
+          "required": true
         },
         "responses": {
           "200": {
-            "description": "Successful operation",
-            "content": {
-              "application/json": {
-                "schema": {
-                  "$ref": "#/components/schemas/market"
-                }
+            "description": "",
+            "headers": {}
+          }
+        },
+        "deprecated": false
+      }
+    },
+    "/product/assign_price": {
+      "post": {
+        "tags": [
+          "Misc"
+        ],
+        "summary": "Create product1",
+        "description": "",
+        "operationId": "Createproduct1",
+        "parameters": [],
+        "requestBody": {
+          "description": "",
+          "content": {
+            "application/json": {
+              "schema": {
+                "allOf": [
+                  {
+                    "$ref": "#/components/schemas/CreateproductRequest1"
+                  },
+                  {
+                    "example": {
+                      "market": "mercadona",
+                      "brand": "lrele",
+                      "product": "Test2",
+                      "price": 4
+                    }
+                  }
+                ]
+              },
+              "example": {
+                "market": "mercadona",
+                "brand": "lrele",
+                "product": "Test2",
+                "price": 4
               }
             }
+          },
+          "required": true
+        },
+        "responses": {
+          "200": {
+            "description": "",
+            "headers": {}
           }
-        }
+        },
+        "deprecated": false
       }
     }
   },
   "components": {
     "schemas": {
-      "product": {
+      "EditproductRequest": {
+        "title": "EditproductRequest",
+        "required": [
+          "name",
+          "brand",
+          "calories",
+          "sugar_percentage",
+          "saturated_fats_percentage"
+        ],
         "type": "object",
         "properties": {
           "name": {
@@ -218,25 +273,132 @@
           "brand": {
             "type": "string"
           },
-          "market": {
-            "type": "string"
-          },
           "calories": {
-            "type": "integer"
+            "type": "integer",
+            "format": "int32"
           },
-          "price": {
-            "type": "integer"
+          "sugar_percentage": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "saturated_fats_percentage": {
+            "type": "integer",
+            "format": "int32"
           }
+        },
+        "example": {
+          "name": "Test2",
+          "brand": "lrele",
+          "calories": 10,
+          "sugar_percentage": 54,
+          "saturated_fats_percentage": 55
         }
       },
-      "market": {
+      "CreatemarketRequest": {
+        "title": "CreatemarketRequest",
+        "required": [
+          "name",
+          "address",
+          "opening_time",
+          "closing_time"
+        ],
         "type": "object",
         "properties": {
           "name": {
             "type": "string"
+          },
+          "address": {
+            "type": "string"
+          },
+          "opening_time": {
+            "type": "string"
+          },
+          "closing_time": {
+            "type": "string"
           }
+        },
+        "example": {
+          "name": "mercadona",
+          "address": "address",
+          "opening_time": "9:00",
+          "closing_time": "9:00"
+        }
+      },
+      "CreateproductRequest": {
+        "title": "CreateproductRequest",
+        "required": [
+          "name",
+          "brand",
+          "calories",
+          "sugar_percentage",
+          "saturated_fats_percentage"
+        ],
+        "type": "object",
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "brand": {
+            "type": "string"
+          },
+          "calories": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "sugar_percentage": {
+            "type": "integer",
+            "format": "int32"
+          },
+          "saturated_fats_percentage": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "name": "Tomate",
+          "brand": "Hacendado",
+          "calories": 10,
+          "sugar_percentage": 54,
+          "saturated_fats_percentage": 54
+        }
+      },
+      "CreateproductRequest1": {
+        "title": "CreateproductRequest1",
+        "required": [
+          "market",
+          "brand",
+          "product",
+          "price"
+        ],
+        "type": "object",
+        "properties": {
+          "market": {
+            "type": "string"
+          },
+          "brand": {
+            "type": "string"
+          },
+          "product": {
+            "type": "string"
+          },
+          "price": {
+            "type": "integer",
+            "format": "int32"
+          }
+        },
+        "example": {
+          "market": "mercadona",
+          "brand": "lrele",
+          "product": "Test2",
+          "price": 4
         }
       }
     }
-  }
+  },
+  "tags": [
+    {
+      "name": "Misc",
+      "description": ""
+    }
+  ]
 }

@@ -18,6 +18,7 @@ def generate_data():
                 writer.writeheader()
                 for data in dict_data:
                     writer.writerow(data)
+            print(f'{csv_name} ready')
         except IOError:
             print("I/O error")
 

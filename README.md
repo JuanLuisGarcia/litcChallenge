@@ -74,13 +74,6 @@ Install all requirements:
 $ python3 -m pip install -e .
 ```
 
-Set environment variables:
-
-```
-$ export FLASK_APP=api
-$ export GENERATED_DIR=<absolute_path>/generated
-```
-
 Server up:
 
 ```
